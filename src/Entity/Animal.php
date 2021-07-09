@@ -22,6 +22,9 @@ class Animal
      */
     private $nickName;
 
+
+    
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -31,6 +34,11 @@ class Animal
      * @ORM\ManyToOne(targetEntity=Owner::class, inversedBy="animals")
      */
     private $owner;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $age;
 
     public function getId(): ?int
     {
@@ -69,6 +77,18 @@ class Animal
     public function setOwner(?Owner $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getAge(): ?int
+    {
+        return $this->age;
+    }
+
+    public function setAge(int $age): self
+    {
+        $this->age = $age;
 
         return $this;
     }

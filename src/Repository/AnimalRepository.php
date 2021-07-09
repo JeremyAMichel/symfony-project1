@@ -47,4 +47,17 @@ class AnimalRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByAgeMinAgeMax(int $ageMin, int $ageMax)
+    {
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.age >= :ageMin')
+            ->setParameter('ageMin', $ageMin)
+            ->andWhere('a.age <= :ageMax')
+            ->setParameter('ageMax', $ageMax)
+            ->orderBy('a.age', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
